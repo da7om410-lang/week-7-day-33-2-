@@ -1,0 +1,18 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from google.colab import files
+
+uploaded = files.upload()
+
+filename = list(uploaded.keys())[0]
+df = pd.read_csv(filename)
+
+corr = df.corr()
+print(corr)
+
+plt.figure(figsize=(6, 5))
+sns.heatmap(corr, annot=True, fmt=".2f", cmap="coolwarm", vmin=-1, vmax=1, linewidths=0.5)
+plt.title("Correlation Heatmap")
+plt.tight_layout()
+plt.show()
